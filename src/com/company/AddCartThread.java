@@ -12,13 +12,14 @@ import static com.company.ConstantValue.ADDCARTURL;
 
 /**
  * Created by dg on 2016/7/30.
+ * 至少得两秒钟才可以加入购物车
  */
 public class AddCartThread extends Thread {
     private String startTime="2016-07-30 14:09:00";
-    private String items;
+    private String[] items;
     private HashMap<String, String> headers;
 
-    public AddCartThread(String startTime, String items, HashMap<String, String> headers) {
+    public AddCartThread(String startTime, String[] items, HashMap<String, String> headers) {
         this.startTime = startTime;
         this.items = items;
         this.headers = headers;
@@ -36,10 +37,11 @@ public class AddCartThread extends Thread {
 //                System.out.println(df.format(System.currentTimeMillis()));
                 Thread.sleep(50);
             }
-            System.out.println("开始网络请求"+items);
-            String result = HttpUtils.doGetWithHeaders(ADDCARTURL + "df2856829095061221,df160728p2856829,1", this.headers);
-//            String message = jsonObject.getString("message");
-            System.out.println(result);
+            for (int i = 0; i < items.length; i++) {
+                String result = HttpUtils.doGetWithHeaders(ADDCARTURL + items[i], this.headers);
+                System.out.println(result);
+                Thread.sleep(2000);
+            }
 
         } catch (ParseException e) {
             e.printStackTrace();
