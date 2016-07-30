@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="JavaJM:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaJM_jar</output-path>
+    <root id="archive" name="JavaJM.jar">
+      <element id="module-output" name="JavaJM" />
+    </root>
+  </artifact>
+</component>

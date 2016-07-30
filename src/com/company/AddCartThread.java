@@ -5,8 +5,7 @@ import com.JSON.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 import static com.company.ConstantValue.ADDCARTURL;
 
@@ -16,13 +15,13 @@ import static com.company.ConstantValue.ADDCARTURL;
  */
 public class AddCartThread extends Thread {
     private String startTime="2016-07-30 14:09:00";
-    private String[] items;
+    private List<String> items;
     private HashMap<String, String> headers;
 
     public AddCartThread(String startTime, String[] items, HashMap<String, String> headers) {
         this.startTime = startTime;
-        this.items = items;
         this.headers = headers;
+        this.items = Arrays.asList(items);
     }
 
     @Override
@@ -37,8 +36,8 @@ public class AddCartThread extends Thread {
 //                System.out.println(df.format(System.currentTimeMillis()));
                 Thread.sleep(50);
             }
-            for (int i = 0; i < items.length; i++) {
-                String result = HttpUtils.doGetWithHeaders(ADDCARTURL + items[i], this.headers);
+            for (int i = 0; i < items.size(); i++) {
+                String result = HttpUtils.doGetWithHeaders(ADDCARTURL + items.get(i), this.headers);
                 System.out.println(result);
                 Thread.sleep(2000);
             }
