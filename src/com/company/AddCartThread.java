@@ -14,7 +14,7 @@ import static com.company.ConstantValue.ADDCARTURL;
  * 至少得两秒钟才可以加入购物车
  */
 public class AddCartThread extends Thread {
-    private String startTime="2016-07-30 14:09:00";
+    private String startTime="2016-07-31 21:00:00";
     private List<String> items;
     private HashMap<String, String> headers;
 
@@ -22,6 +22,7 @@ public class AddCartThread extends Thread {
         this.startTime = startTime;
         this.headers = headers;
         this.items = Arrays.asList(items);
+        Collections.shuffle(this.items);
     }
 
     @Override
